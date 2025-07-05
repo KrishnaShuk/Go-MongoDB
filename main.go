@@ -15,17 +15,16 @@ func main() {
 	r.GET("/user/:id", uc.GetUser)
 	r.POST("/user", uc.CreateUser)
 	r.DELETE("/user/:id", uc.DeleteUser)
-	http.ListenAndServe("localhost:8080", r)
+	http.ListenAndServe(":8080", r)
 
 }
 
 func getSession() *mgo.Session {
-	s, err := mgo.Dial("mongodb://localhost:27017")
-
+	s, err := mgo.Dial("mongodb:27017") // Notice: 'mongodb' is the service name
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("Connected to MongoDB at %s\n", "mongodb://localhost:27017")
+	fmt.Printf("Connected to MongoDB at mongodb:27017\n")
 	s.SetMode(mgo.Monotonic, true)
 	return s
 }

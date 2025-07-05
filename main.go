@@ -21,10 +21,11 @@ func main() {
 
 func getSession() *mgo.Session {
 	s, err := mgo.Dial("mongodb://localhost:27017")
-	fmt.Printf("Connected to MongoDB at %s\n", "mongodb://localhost:27017")
+
 	if err != nil {
 		panic(err)
 	}
+	fmt.Printf("Connected to MongoDB at %s\n", "mongodb://localhost:27017")
 	s.SetMode(mgo.Monotonic, true)
 	return s
 }
